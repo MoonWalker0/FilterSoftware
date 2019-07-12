@@ -1,0 +1,59 @@
+﻿<Controls:MetroWindow x:Class="TelevendFilter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:TelevendFilter"  
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="TeleVend Audit Filter" Height="395.2" Width="980.2" ResizeMode="NoResize">
+    <Grid>
+        <ListView Name ="MainList" BorderThickness="1" HorizontalAlignment="Left" Height="296" Margin="296,10,0,0" VerticalAlignment="Top" Width="668" SelectionChanged="MainListSelectionChanged" ItemsSource="{Binding MainListItemSource}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID pracownika"   DisplayMemberBinding="{Binding ItemWorkerID}"/>
+                    <GridViewColumn Header="ID karty"        DisplayMemberBinding="{Binding ItemStickerID}"/>
+                    <GridViewColumn Header="Televend ID"     DisplayMemberBinding="{Binding ItemID}"/>
+                    <GridViewColumn Header="Data"            DisplayMemberBinding="{Binding ItemDate}"/>
+                    <GridViewColumn Header="Cena"            DisplayMemberBinding="{Binding ItemPurchase}"/>
+                    <GridViewColumn Header="Produkt"         DisplayMemberBinding="{Binding ItemProduct}"/>
+                    <GridViewColumn Header="Maszyna"         DisplayMemberBinding="{Binding ItemMachine}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="319,311,0,0" TextWrapping="Wrap" Text="Suma sprzedaży" VerticalAlignment="Top"  Width="120"/>
+        <TextBox Name="PurchaseSum" HorizontalAlignment="Left" Height="23" Margin="319,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <!--TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="501,311,352.6,0" TextWrapping="Wrap" Text="Suma doładowań" VerticalAlignment="Top"  Width="120"/-->
+        <!--TextBox Name="ReloadSum" HorizontalAlignment="Left" Height="23" Margin="500,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/-->
+
+
+        <Button Content="Eksport ekranu" HorizontalAlignment="Left" Margin="699,323,0,0" Width="104" Click="ExportDataButton" Height="28" VerticalAlignment="Top"/>
+        <Button Content="Eksport kart" HorizontalAlignment="Left" Margin="844,323,0,0" VerticalAlignment="Top" Width="92" Click="ExportIndividualButton" Height="27"/>
+        <GroupBox Header="Pliki wsadowe" HorizontalAlignment="Left" Height="84" Margin="10,10,0,0" VerticalAlignment="Top" Width="270">
+            <Grid>
+                <Button Content="Wybierz plik" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="96" Height="34" Click="SelectFileButton" />
+                <Button Content="  Dodaj kody&#10;pracownicze" HorizontalAlignment="Left" Margin="155,4,0,0" VerticalAlignment="Top" Width="96" Height="41" Click="AddWorkerIDButton"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Filtrowanie" HorizontalAlignment="Left" Height="240" Margin="10,99,0,0" VerticalAlignment="Top" Width="270">
+            <Grid Margin="0,0,-0.2,-0.4">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Data od" VerticalAlignment="Top" Height="16" Width="52"/>
+                <TextBlock HorizontalAlignment="Left" Margin="136,0,0,0" TextWrapping="Wrap" Text="Data do" VerticalAlignment="Top" Height="16" Width="53"/>
+                <DatePicker x:Name = "DateToPicker" Text="Podaj datę"  HorizontalAlignment="Left" Margin="136,16,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+                <DatePicker x:Name = "DateFromPicker" Text="Podaj datę" HorizontalAlignment="Left" Margin="0,16,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+
+
+                <Button Content="Poprz. miesiąc" HorizontalAlignment="Left" Margin="85,47,0,0" VerticalAlignment="Top" Width="91" Click="DateLastMonthClick" Height="27"/>
+                <Button Content="Ten rok" HorizontalAlignment="Left" Margin="181,47,0,0" VerticalAlignment="Top" Width="80" Click="DateThisYearClick" Height="27"/>
+                <Button Content="Ten miesiąc" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top" Width="80" Click="DateThisMonthClick" Height="27"/>
+                <TextBox x:Name="CardID" HorizontalAlignment="Left" Height="45" Margin="7,101,0,0" TextWrapping="Wrap" Text="Kod karty" VerticalAlignment="Top" Width="104"/>
+                <TextBlock HorizontalAlignment="Left" Margin="125,85,0,0" TextWrapping="Wrap" Text="Pomiń kartę serwisanta" VerticalAlignment="Top" Width="136" FontWeight="Bold"/>
+                <TextBox x:Name="ServiceCard" HorizontalAlignment="Left" Height="45" Margin="147,101,0,0" TextWrapping="Wrap" Text="Kod karty" VerticalAlignment="Top" Width="104"/>
+                <TextBlock HorizontalAlignment="Left" Margin="6,85,0,0" TextWrapping="Wrap" Text="Odfiltruj kartę" VerticalAlignment="Top" Width="136" FontWeight="Bold"/>
+                <Button Content="Filtruj" HorizontalAlignment="Left" Margin="31,168,0,0" VerticalAlignment="Top" Width="80" Click="PerformFilterButton" Height="27"/>
+                <Button Content="Reset" HorizontalAlignment="Left" Margin="147,168,0,0" VerticalAlignment="Top" Width="80" Click="ResetFilterButton" Height="27"/>
+
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Controls:MetroWindow>
